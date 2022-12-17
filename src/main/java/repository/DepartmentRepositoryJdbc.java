@@ -3,6 +3,7 @@ package repository;
 
 
 import model.Department;
+import net.bytebuddy.utility.RandomString;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class DepartmentRepositoryJdbc implements DepartmentRepository {
             throw new RuntimeException(e);
         }
     }
-    public List<Department> getAll() {
+    public List<Department> findAll() {
 
         ArrayList<Department> departments = new ArrayList<Department>();
 
@@ -54,8 +55,8 @@ public class DepartmentRepositoryJdbc implements DepartmentRepository {
 
         return departments;
     }
-
-    public Department getById(int id) {
+    @Override
+    public Department findById(int id) {
 
         Department department = null;
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
@@ -80,6 +81,15 @@ public class DepartmentRepositoryJdbc implements DepartmentRepository {
         return department;
     }
 
+
+    public int create(){
+        Department department = new Department();
+        department.setName(RandomString.make());
+        return create(department);
+    }
+
+
+    @Override
     public int create(Department department) {
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
@@ -98,7 +108,7 @@ public class DepartmentRepositoryJdbc implements DepartmentRepository {
             throw new RuntimeException(ex);
         }
     }
-
+    @Override
     public int update(Department department) {
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
@@ -117,7 +127,7 @@ public class DepartmentRepositoryJdbc implements DepartmentRepository {
             throw new RuntimeException(ex);
         }
     }
-
+    @Override
     public int delete(int id) {
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {

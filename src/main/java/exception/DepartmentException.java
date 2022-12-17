@@ -1,6 +1,5 @@
 package exception;
 
-
 import net.sf.oval.ConstraintViolation;
 
 import java.util.List;
@@ -12,6 +11,6 @@ public class DepartmentException extends RuntimeException{
     }
 
     public DepartmentException(List<ConstraintViolation> violations) {
-        this.violations = violations;
+    this.violations = violations;
     }
 }

@@ -5,9 +5,8 @@ import model.Employee;
 import java.util.List;
 
 public interface EmployeeRepository {
-    Employee getById(int id);
-    List<Employee> getByDepId(int depId);
-    List<Employee> getAll();
+    Employee findById(int id);
+    List<Employee> findByDepId(int depId);
     int create(Employee employee);
     int update(Employee employee);
     int delete(int id);

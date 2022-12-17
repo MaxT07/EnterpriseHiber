@@ -26,7 +26,7 @@ public class EmployeeRepositoryJdbs implements EmployeeRepository {
         }
     }
 
-    public ArrayList<Employee> getAll() {
+    public ArrayList<Employee> findAllEmployees() {
 
         ArrayList<Employee> employees = new ArrayList<Employee>();
 
@@ -48,14 +48,14 @@ public class EmployeeRepositoryJdbs implements EmployeeRepository {
                 employees.add(employee);
             }
         } catch (SQLException e) {
-            System.out.println("getAll: " + e.getMessage());
+            System.out.println("findAll: " + e.getMessage());
             throw new RuntimeException(e);
         }
 
         return employees;
     }
 
-    public Employee getById(int id) {
+    public Employee findById(int id) {
 
         Employee employee = null;
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
@@ -84,7 +84,7 @@ public class EmployeeRepositoryJdbs implements EmployeeRepository {
     }
 
 
-    public List<Employee> getByDepId(int depId) {
+    public List<Employee> findByDepId(int depId) {
 
         List<Employee> employees = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {

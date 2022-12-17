@@ -2,12 +2,13 @@ package repository;
 
 import model.Department;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface DepartmentRepository {
-   List<Department> getAll();
+   List<Department> findAll();
 
-    Department getById(int id);
+    Department findById(int id);
 
     int create(Department department);
 
